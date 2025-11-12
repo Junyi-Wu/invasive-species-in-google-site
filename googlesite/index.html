@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>台灣外來入侵種管理資料表</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  
+  <style>
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      margin: 30px;
+      background-color: #f7f9fb;
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 25px;
+    }
+
+    /* ===== 篩選列設計 ===== */
+    .filter-bar {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px 25px;
+      margin-bottom: 20px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .filter-select, .filter-input {
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background-color: #fff;
+      font-size: 14px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .filter-select:focus, .filter-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.3);
+    }
+
+    .filter-button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .filter-button:hover {
+      background-color: #1e40af;
+    }
+
+    /* DataTable 樣式微調 */
+    table.dataTable thead th {
+      background-color: #003366;
+      color: #fff;
+      text-align: center;
+    }
+
+    table.dataTable tbody td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>台灣外來入侵種管理資料表</h2>
+
+<!-- 篩選列 -->
+<div class="filter-bar">
+  <div class="filter-group">
+    <label for="filter-taxon-group">類群：</label>
+    <select id="filter-taxon-group" class="filter-select">
+      <option value="">任何</option>
+    </select>
+
+    <label for="filter-control-level">防治對策等級：</label>
+    <select id="filter-control-level" class="filter-select">
+      <option value="">任何</option>
+    </select>
+
+    <label for="keyword-search">搜尋：</label>
+    <input id="keyword-search" type="text" class="filter-input" placeholder="輸入物種名稱關鍵字">
+    <button id="filter-btn" class="filter-button">篩選</button>
+  </div>
+</div>
+
+<!-- 資料表 -->
+<table id="species-table" class="display">
+  <thead>
+    <tr>
+      <th>類群</th>
+      <th>中文俗名</th>
+      <th>學名</th>
+      <th>入侵年分</th>
+      <th>分布範圍</th>
+      <th>防治對策等級</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>鳥類</td>
+      <td><a href="https://sites.google.com/view/tw-invasive-db/invasive_info/%E9%B3%A5%E9%A1%9E/%E5%9F%83%E5%8F%8A%E8%81%96%E4%B4%89" target="_blank">埃及聖䴉</a></td>
+      <td>Threskiornis aethiopicus</td>
+      <td>1980</td>
+      <td>高雄、屏東</td>
+      <td>緊急對策</td>
+    </tr>
+    
+    <tr>
+      <td>爬行類</td>
+      <td><a href="https://sites.google.com/view/tw-invasive-db/invasive_info/reptiles/Iguana-iguana" target="_blank">綠鬣蜥</a></td>
+      <td>Iguana iguana</td>
+      <td>2015</td>
+      <td>新北、臺中、彰化、南投、嘉義、臺南、高雄、屏東、台東</td>
+      <td>緊急對策</td>
+    </tr>
+    
+    <tr>
+      <td>爬行類</td>
+      <td><a href="https://sites.google.com/view/tw-invasive-db/invasive_info/reptiles/Anolis-sagrei" target="_blank">沙氏變色蜥</a></td>
+      <td>Anolis sagrei</td>
+      <td>2013</td>
+      <td>嘉義縣、花蓮縣、新竹市</td>
+      <td>緊急對策</td>
+    </tr>
+    
+    <tr>
+      <td>爬行類</td>
+      <td><a href="https://sites.google.com/view/tw-invasive-db/invasive_info/reptiles/Physignathus-cocincinus" target="_blank">綠水龍</a></td>
+      <td>Physignathus cocincinus</td>
+      <td>2010</td>
+      <td>新北市、新竹市</td>
+      <td>緊急對策</td>
+    </tr>
+    
+    <tr>
+      <td>兩棲類</td>
+      <td><a href="https://sites.google.com/view/tw-invasive-db/invasive_info/%E5%85%A9%E6%A3%B2%E9%A1%9E/Rhinella-marina" target="_blank">海蟾蜍</a></td>
+      <td>Rhinella marina</td>
+      <td>2019</td>
+      <td>南投縣</td>
+      <td>緊急對策</td>
+    </tr>
+    
+    <tr>
+      <td>兩棲類</td>
+      <td><a href="https://sites.google.com/view/tw-invasive-db/invasive_info/%E5%85%A9%E6%A3%B2%E9%A1%9E/Polypedates-megacephalus" target="_blank">斑腿樹蛙</a></td>
+      <td>Polypedates megacephalus</td>
+      <td>2010</td>
+      <td>全台、金門、馬祖</td>
+      <td>重點對策 (台灣本島)/緊急對策 (離島馬祖)</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<script>
+$(document).ready(function() {
+    const table = $('#species-table').DataTable({
+        language: { url: "https://cdn.datatables.net/plug-ins/1.13.5/i18n/zh-HANT.json" }
+    });
+
+    // ✅ 注入資料
+    const data = [{"id":"1","taxon_group":"鳥類","vernacular_name":"埃及聖䴉","vernacular_url":"https:\/\/sites.google.com\/view\/tw-invasive-db\/invasive_info\/%E9%B3%A5%E9%A1%9E\/%E5%9F%83%E5%8F%8A%E8%81%96%E4%B4%89","scientific_name":"Threskiornis aethiopicus","first_record_year":"1980","distribution":"高雄、屏東","control_level":"緊急對策"},{"id":"2","taxon_group":"爬行類","vernacular_name":"綠鬣蜥","vernacular_url":"https:\/\/sites.google.com\/view\/tw-invasive-db\/invasive_info\/reptiles\/Iguana-iguana","scientific_name":"Iguana iguana","first_record_year":"2015","distribution":"新北、臺中、彰化、南投、嘉義、臺南、高雄、屏東、台東","control_level":"緊急對策"},{"id":"3","taxon_group":"爬行類","vernacular_name":"沙氏變色蜥","vernacular_url":"https:\/\/sites.google.com\/view\/tw-invasive-db\/invasive_info\/reptiles\/Anolis-sagrei","scientific_name":"Anolis sagrei","first_record_year":"2013","distribution":"嘉義縣、花蓮縣、新竹市","control_level":"緊急對策"},{"id":"4","taxon_group":"爬行類","vernacular_name":"綠水龍","vernacular_url":"https:\/\/sites.google.com\/view\/tw-invasive-db\/invasive_info\/reptiles\/Physignathus-cocincinus","scientific_name":"Physignathus cocincinus","first_record_year":"2010","distribution":"新北市、新竹市","control_level":"緊急對策"},{"id":"5","taxon_group":"兩棲類","vernacular_name":"海蟾蜍","vernacular_url":"https:\/\/sites.google.com\/view\/tw-invasive-db\/invasive_info\/%E5%85%A9%E6%A3%B2%E9%A1%9E\/Rhinella-marina","scientific_name":"Rhinella marina","first_record_year":"2019","distribution":"南投縣","control_level":"緊急對策"},{"id":"6","taxon_group":"兩棲類","vernacular_name":"斑腿樹蛙","vernacular_url":"https:\/\/sites.google.com\/view\/tw-invasive-db\/invasive_info\/%E5%85%A9%E6%A3%B2%E9%A1%9E\/Polypedates-megacephalus","scientific_name":"Polypedates megacephalus","first_record_year":"2010","distribution":"全台、金門、馬祖","control_level":"重點對策 (台灣本島)\/緊急對策 (離島馬祖)"}];
+
+    // 動態產生下拉選單
+    const taxonGroups = [...new Set(data.map(d => d.taxon_group).filter(v => v.trim() !== ""))];
+    const controlLevels = [...new Set(data.map(d => d.control_level).filter(v => v.trim() !== ""))];
+
+    for (const val of taxonGroups) $('#filter-taxon-group').append(`<option value="${val}">${val}</option>`);
+    for (const val of controlLevels) $('#filter-control-level').append(`<option value="${val}">${val}</option>`);
+
+    // 下拉選單篩選
+    $('#filter-taxon-group').on('change', function() {
+        const val = this.value;
+        table.column(0).search(val ? '^' + val + '$' : '', true, false).draw();
+    });
+    $('#filter-control-level').on('change', function() {
+        const val = this.value;
+        table.column(5).search(val ? '^' + val + '$' : '', true, false).draw();
+    });
+
+    // 搜尋框
+    $('#filter-btn').on('click', function() {
+        const keyword = $('#keyword-search').val();
+        table.search(keyword).draw();
+    });
+});
+</script>
+
+</div>
+</body>
+</html>
